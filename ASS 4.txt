@@ -1,0 +1,20 @@
+1.
+CREATE VIEW AccountView AS (
+	SELECT * FROM Account
+);
+
+2.
+CREATE SYNONYM Account_Synonym
+FOR Balance.Account;
+
+3.
+CREATE SEQUENCE AccSeq
+  START WITH 1004
+  INCREMENT BY 1
+  MAXVALUE 999999
+  NOCYCLE
+  CACHE 20;
+  
+4. 
+CREATE INDEX AccountIndex
+ON Account (Balance);

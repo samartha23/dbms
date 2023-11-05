@@ -1,0 +1,28 @@
+create table Borrower (RollNo NUMBER PRIMARY KEY,Name varchar(10),IssueDate Date,Status varchar(10),BookName varchar(10));
+create table Fine (RollNo NUMBER,ReturnDate Date,Amount NUMBER);
+
+DECLARE
+    vRollNo NUMBER;
+    vDOI Date;
+    vDays NUMBER;
+    vFineAmount NUMBER;
+BEGIN
+   	vRollNo := &rollno;
+    SELECT IssueDate INTO vDOI FROM Borrower where RollNo=vRollNo;
+    vDays := TRUNC(SYSDATE - vDOI);
+    IF vDays BETWEEN 15 AND 30 THEN
+    	vFineAmount := vDays * 5;
+    ELSIF vDays > 30 THEN
+    	vFineAmount := (vDays - 30) * 50 + 150;
+    ELSE
+    	vFineAmount := 0;
+    END IF;
+    insert into Fine values (vRollNo,SYSDATE,vFineAmount);
+    delete from Borrower where RollNo=vRollNo;
+EXCEPTION
+	WHEN NO_DATA_FOUND THEN
+		dbms_output.put_line('Data Not Found');
+	WHEN OTHERS THEN
+		dbms_output.put_line('SQL Internal Error');
+END;
+/

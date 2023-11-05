@@ -1,0 +1,105 @@
+db.createCollection("customers")
+
+db.customers.insertMany([
+  {
+    name: "John Doe",
+    email: "john@example.com",
+    profession: "Engineer",
+    gender: "Male",
+    billamount: 100.50
+  },
+  {
+    name: "Jane Smith",
+    email: "jane@example.com",
+    profession: "Doctor",
+    gender: "Female",
+    billamount: 200.75
+  },
+  {
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    profession: "Teacher",
+    gender: "Male",
+    billamount: 150.20
+  },
+  {
+    name: "Alice Brown",
+    email: "alice@example.com",
+    profession: "Designer",
+    gender: "Female",
+    billamount: 75.30
+  },
+  {
+    name: "Charlie Wilson",
+    email: "charlie@example.com",
+    profession: "Programmer",
+    gender: "Male",
+    billamount: 300.10
+  },
+  {
+    name: "Eva White",
+    email: "eva@example.com",
+    profession: "Nurse",
+    gender: "Female",
+    billamount: 50.90
+  },
+  {
+    name: "Frank Davis",
+    email: "frank@example.com",
+    profession: "Accountant",
+    gender: "Male",
+    billamount: 225.60
+  },
+  {
+    name: "Grace Lee",
+    email: "grace@example.com",
+    profession: "Artist",
+    gender: "Female",
+    billamount: 120.45
+  },
+  {
+    name: "Henry Harris",
+    email: "henry@example.com",
+    profession: "Engineer",
+    gender: "Male",
+    billamount: 180.30
+  },
+  {
+    name: "Ivy Martin",
+    email: "ivy@example.com",
+    profession: "Lawyer",
+    gender: "Female",
+    billamount: 250.80
+  }
+])
+
+1.
+var mapFuction = function(){ emit(this.gender,1);};
+var reduceFunction = function (key,value){ return Array.sum(value);};
+db.customers.mapReduce(mapFuction,reduceFunction,{out:"gender"});
+db.gender.find();
+
+2.
+var mapFunction1 = function(){ emit(this.profession,1);};
+var reduceFunction1 = function(key,value){ return Array.sum(value)};
+db.customers.mapReduce(mapFunction1,reduceFunction1,{ out:"profession"});
+> db.profession.find();
+
+3.
+db.customers.find({billamount:{$gt:200}})
+
+4.
+db.customers.updateOne({name:"Jane Smith"},{$set:{billamount:150}})
+
+5.
+db.customers.find({name: /^B/})
+
+6.
+db.customers.find({profession:"Engineer"})
+
+7.
+db.customers.find().sort({billamount:-1});
+
+
+
+

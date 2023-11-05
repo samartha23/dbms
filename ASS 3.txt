@@ -1,0 +1,18 @@
+1.
+SELECT * FROM Account
+WHERE Balance > (
+	SELECT AVG(Balance) FROM Account
+)
+
+2.
+SELECT COUNT(*) AS Total_Customer FROM Customer;
+
+3.
+SELECT SUM(Amount) FROM Loan;
+
+4.
+DELETE FROM Borrower
+WHERE LoanNo IN (
+	SELECT LoanNo FROM Loan
+	WHERE Amount BETWEEN 0 AND 20000
+);

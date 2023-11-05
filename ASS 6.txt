@@ -1,0 +1,34 @@
+CREATE TABLE Customer(CNo NUMBER PRIMARY KEY,CName varchar(10),QtyOrdered NUMBER,OrderDate Date,CAddress varchar(10));
+
+INSERT INTO Customer VALUES (1001,'Pruthvi',100,'01-10-2023','Pune');
+INSERT INTO Customer VALUES (1002,'Nayan',10,'14-10-2023','Nagar');
+INSERT INTO Customer VALUES (1003,'Samarth',700,'19-10-2023','Nashik');
+INSERT INTO Customer VALUES (1004,'Kalpesh',80,'17-10-2023','Mumbai');
+INSERT INTO Customer VALUES (1005,'Adhish',84,'30-10-2023','Pune');
+INSERT INTO Customer VALUES (1006,'Varun',15,'14-10-2023','Pune');
+
+1.
+SELECT *
+FROM Customer
+WHERE CName LIKE '_a%'
+
+2.
+SELECT *
+FROM Customer
+WHERE CAddress LIKE 'M%';
+
+3.
+SELECT *
+FROM Customer
+WHERE CNo=1001 OR CNo=1002 OR CNo=1005;
+
+4.
+SELECT *
+FROM Customer
+WHERE CAddress='Pune' OR CAddress='Nashik';
+
+5.
+CREATE VIEW CustomerView AS (
+	SELECT CNo,QtyOrdered,OrderDate
+	FROM Customer
+);

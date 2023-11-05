@@ -1,0 +1,28 @@
+1.
+SELECT CName
+FROM Depositor
+UNION
+SELECT CName
+FROM Borrower;
+
+2.
+SELECT CName
+FROM Depositor
+INTERSECT
+SELECT CName
+FROM Borrower;
+
+3.
+SELECT CName
+FROM Depositor
+MINUS
+SELECT CName
+FROM Borrower;
+
+4.
+SELECT AVG(Balance)
+FROM Account
+WHERE BranchName='Kothrud';
+
+
+

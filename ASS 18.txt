@@ -1,0 +1,12 @@
+use Eemployee
+db.createCollection("Employee");
+
+db.Employee.insertMany([{ Emp_id: "E1001", Emp_Name: "Pruthvi", Emp_salary: 60000, Emp_Dept: "Sales" },{ Emp_id: "E1002", Emp_Name: "Nayan", Emp_salary: 40000, Emp_Dept: "HR" },{ Emp_id: "E1003", Emp_Name: "Adhish", Emp_salary: 10000, Emp_Dept: "QA" },{ Emp_id: "E1004", Emp_Name: "Ritik", Emp_salary: 50000, Emp_Dept: "Test" },{ Emp_id: "E1005", Emp_Name: "Praful", Emp_salary: 45000, Emp_Dept: "HR" },{ Emp_id: "E1006", Emp_Name: "Sarvesh", Emp_salary: 85000, Emp_Dept: "DevOps" }])
+
+db.Employee.find({ Emp_salary: { $gt: 50000 } })
+db.Employee.updateOne({ Emp_id: "E1002" }, { $inc: { Emp_salary: 5000 } })
+db.Employee.find({ Emp_Dept: "Marketing", Emp_salary: { $lt: 45000 } })
+db.Employee.find().sort({ Emp_salary: -1 }).limit(5)
+db.Employee.deleteOne({ Emp_id: "E1007" })
+db.Employee.createIndex({ Emp_id: 1 })
+

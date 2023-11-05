@@ -1,0 +1,33 @@
+CREATE TABLE Owner (OwnerNo NUMBER PRIMARY KEY,OwnerName varchar(10),Phone varchar(10));
+INSERT INTO Owner VALUES (1,'Pruthvi','1234567895');
+INSERT INTO Owner VALUES (2,'Ritik','984751369');
+INSERT INTO Owner VALUES (3,'Kalpesh','8547123657');
+INSERT INTO Owner VALUES (4,'Samarth','6584712548');
+
+
+CREATE TABLE Property (PNo NUMBER PRIMARY KEY,Type varchar(10),Rent NUMBER,Address varchar(10),Status varchar(10),OwnerNo NUMBER,FOREIGN KEY (OwnerNo) REFERENCES Owner (OwnerNo));
+INSERT INTO Property VALUES (100,'1BHK',15000,'Pune','A',1);
+INSERT INTO Property VALUES (101,'2BHK',18000,'Pune','NA',2);
+INSERT INTO Property VALUES (102,'2BHK',25000,'Nagar','A',3);
+INSERT INTO Property VALUES (103,'1BHK',11000,'Mumbai','A',4);
+INSERT INTO Property VALUES (104,'1BHK',12000,'Nashik','NA',2);
+INSERT INTO Property VALUES (105,'1BHK',15000,'Pune','A',4);
+
+1.
+CREATE VIEW OwnerView1 AS (
+	SELECT P.PNo,P.Rent,P.Type,P.Address,O.OwnerName
+	FROM Property P,Owner O
+	WHERE O.OwnerNo=P.OwnerNo
+);
+
+2.
+SELECT *
+FROM Owner
+WHERE OwnerName LIKE '%ee%';
+
+3.
+SELECT *
+FROM Property
+WHERE Rent Between 10000 AND 14000;
+
+4.

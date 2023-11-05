@@ -1,0 +1,23 @@
+create table Customer (ID NUMBER PRIMARY KEY,Name varchar(10),Age NUMBER,Address varchar(10),Salary NUMBER);
+
+CREATE OR REPLACE TRIGGER CustTrigger
+BEFORE UPDATE OR DELETE OR INSERT ON Customer
+FOR EACH ROW
+DECLARE
+	vDiff NUMBER;
+BEGIN
+	IF INSERTING THEN
+		vDiff := :NEW.Salary - 0;
+		dbms_output.put_line('Salary Diffrence is : ',vDiff);
+	ELSIF UPDATING THEN
+		vDiff := :NEW.Salary - :OLD.Salary;
+		dbms_output.put_line('Salary Diffrence is : ',vDiff);
+	ELSE
+		vDiff := 0 - :OLD.Salary;
+		dbms_output.put_line('Salary Diffrence is : ',vDiff);
+	END IF;
+END;
+/
+
+create table Property (Pno NUMBER PRIMARY KEY,SqFeet NUMBER,Rent NUMBER,Address varchar(10),Status varchar(10),OwnerNo NUMBER,FORIGEN KEY (OwnerNo) REFERENCES Owner (OwnerNo));
+create table Owner (OwnerNo NUMBER PRIMARY KEY,OwnerName varchar(10),PhoneNo varchar(10));
